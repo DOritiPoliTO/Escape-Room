@@ -25,6 +25,7 @@ private:
 	FixedConstraint* pFixedConstraint_;
 	Sound* pUnlockSound_;
 	Sound* pSqueakSound_;
+	Sound* pLockedSound_;
 	float elapsedTime_;
 };
 

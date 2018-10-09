@@ -45,6 +45,7 @@ private:
 	Text2D* pNewEntryInDiaryNotifyText_;
 	Text2D* pEndGameText_;
 	Text2D* pCreditsText_;
+	Text2D* pThanksText_;
 	Sound* pAmbientMusic_;
 	float elapsedTime_;
 	bool newNoteInDiaryFlag_;

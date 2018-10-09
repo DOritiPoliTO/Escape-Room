@@ -44,9 +44,20 @@ Door::Door(const char* bodyFilename, const char* modelFilename, const Vector3f& 
 			"../EscapeRoom/data/sounds/door_squeak.aiff",
 			false
 		);
+
+		pLockedSound_ = AudioSystem::getInstance().loadSound(
+			"../EscapeRoom/data/sounds/door_locked.wav",
+			false
+		);
 	}
 	catch (...)
 	{
+		if (pLockedSound_ != nullptr)
+		{
+			delete pLockedSound_;
+			pLockedSound_ = nullptr;
+		}
+
 		if (pSqueakSound_ != nullptr)
 		{
 			delete pSqueakSound_;
@@ -81,6 +92,12 @@ Door::Door(const char* bodyFilename, const char* modelFilename, const Vector3f& 
 
 Door::~Door()
 {
+	if (pLockedSound_ != nullptr)
+	{
+		delete pLockedSound_;
+		pLockedSound_ = nullptr;
+	}
+
 	if (pSqueakSound_ != nullptr)
 	{
 		delete pSqueakSound_;
@@ -126,6 +143,8 @@ bool Door::use(Prop* pOtherProp)
 			state_ = Door::State::CLOSE;
 			return true;
 		}
+
+		AudioSystem::getInstance().playSound(pLockedSound_, 1.0f);
 		return false;
 	case Door::State::OPEN:
 	case Door::State::OPENING:

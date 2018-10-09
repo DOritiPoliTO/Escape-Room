@@ -53,7 +53,10 @@ Game::Game() :
 
 			pEndGameText_ = new Text2D("../EscapeRoom/data/fonts/candara.fnt");
 
-			pCreditsText_ = new Text2D("Damiano Oriti (Programming and Modeling)\nSara Battelini (Modeling)",
+			pCreditsText_ = new Text2D("Damiano Oriti (Programming, Modeling and Animation)\nSara Battelini (Modeling and Animation)",
+				Text2D::Alignment::CENTER, "../EscapeRoom/data/fonts/candara.fnt");
+
+			pThanksText_ = new Text2D("Special Thanks go to Antonio Marceddu for the Music of the Game",
 				Text2D::Alignment::CENTER, "../EscapeRoom/data/fonts/candara.fnt");
 
 			pAmbientMusic_ = AudioSystem::getInstance().loadSound(
@@ -104,12 +107,19 @@ Game::Game() :
 			pEndGameText_->effectColor_ = Color(0.0f, 0.0f, 0.0f);
 			scenes[SceneId::GAME_END_SCENE].add(pEndGameText_);
 
-			pCreditsText_->position_ = Vector2f(0.0f, -0.2f);
+			pCreditsText_->position_ = Vector2f(0.0f, -0.1f);
 			pCreditsText_->color_ = Color(1.0f, 1.0f, 1.0f);
-			pCreditsText_->scale_ = 1.6f;
+			pCreditsText_->scale_ = 1.4f;
 			pCreditsText_->effectType_ = Text2D::EffectType::DROP_SHADOWS;
 			pCreditsText_->effectColor_ = Color(0.0f, 0.0f, 0.0f);
 			scenes[SceneId::CREDITS_SCENE].add(pCreditsText_);
+
+			pThanksText_->position_ = Vector2f(0.0f, -0.6f);
+			pThanksText_->color_ = Color(1.0f, 1.0f, 1.0f);
+			pThanksText_->scale_ = 0.8f;
+			pThanksText_->effectType_ = Text2D::EffectType::DROP_SHADOWS;
+			pThanksText_->effectColor_ = Color(0.0f, 0.0f, 0.0f);
+			scenes[SceneId::CREDITS_SCENE].add(pThanksText_);
 		}
 	}
 	catch (...)
@@ -118,6 +128,12 @@ Game::Game() :
 		{
 			delete pAmbientMusic_;
 			pAmbientMusic_ = nullptr;
+		}
+
+		if (pThanksText_ != nullptr)
+		{
+			delete pThanksText_;
+			pThanksText_ = nullptr;
 		}
 
 		if (pCreditsText_ != nullptr)
@@ -184,6 +200,12 @@ Game::~Game()
 	{
 		delete pAmbientMusic_;
 		pAmbientMusic_ = nullptr;
+	}
+
+	if (pThanksText_ != nullptr)
+	{
+		delete pThanksText_;
+		pThanksText_ = nullptr;
 	}
 
 	if (pCreditsText_ != nullptr)
@@ -469,7 +491,7 @@ inline void Game::handleStart(float deltaTime)
 	if (key == 27
 		|| key == 13)
 	{
-		AudioSystem::getInstance().playSound(pAmbientMusic_, 1.0f);
+		AudioSystem::getInstance().playSound(pAmbientMusic_, 0.25f);
 		activeSceneId_ = SceneId::WORLD_SCENE;
 		state_ = Game::State::IN_WORLD;
 	}
@@ -483,7 +505,7 @@ inline void Game::handleStart(float deltaTime)
 
 	if (elapsedTime_ > 4.0f)
 	{
-		AudioSystem::getInstance().playSound(pAmbientMusic_, 1.0f);
+		AudioSystem::getInstance().playSound(pAmbientMusic_, 0.25f);
 		activeSceneId_ = SceneId::WORLD_SCENE;
 		state_ = Game::State::IN_WORLD;
 	}
