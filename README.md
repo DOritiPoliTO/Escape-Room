@@ -1,6 +1,6 @@
 # Escape Room
 
-**Escape Room is a videogame developed as a university project for Computer Graphics Course**
+**Escape Room is a videogame developed for a university Computer Graphics course**
 
 ### Developers:
 
@@ -11,7 +11,7 @@
 
 In this videogame, you have to solve some very simple puzzles in order to find the key and escape the castle room you are in.
 
-[Video]()
+[Video](https://www.youtube.com/watch?v=IKH6xkf1tJQ)
 
 ### Game Features:
 
@@ -22,6 +22,7 @@ In this videogame, you have to solve some very simple puzzles in order to find t
 - Combine objects to use them (e.g. put the key in the keyhole so you may open the door)
 - Diary with notes updated when solving puzzles
 - Animated sky with clouds
+- Sprite animation
 
 ### Graphics Features:
 
