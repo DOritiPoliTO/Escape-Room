@@ -2,7 +2,7 @@
 
 **Escape Room is a videogame developed as a university project for Computer Graphics Course**
 
-## Developers:
+### Developers:
 
 - Damiano Oriti (Programming, 3D Modeling and Animation)
 - Sara Battelini (3D Modeling and Animation)
@@ -11,7 +11,7 @@
 
 In this videogame, you have to solve some very simple puzzles in order to find the key and escape the castle room you are in.
 
-### Game Features
+### Game Features:
 
 - Freely move in a 3D environment
 - Crouch and jump to reach objects which rest on the floor or on very height places
@@ -21,7 +21,7 @@ In this videogame, you have to solve some very simple puzzles in order to find t
 - Diary with notes updated when solving puzzles
 - Animated sky with clouds
 
-### Graphics Features
+### Graphics Features:
 
 - Phong shading
 - Environment map reflections
@@ -31,7 +31,7 @@ In this videogame, you have to solve some very simple puzzles in order to find t
 - Font rendering based on [signed distance field](http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf)
 - Render to texture
 
-### Other Features
+### Other Features:
 
 - Multi-threaded video decoding
 - Configurator class with related config.ini file
