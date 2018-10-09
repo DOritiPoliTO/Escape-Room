@@ -88,22 +88,6 @@ void Texture::write(const void* pixels)
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width_, height_, GL_RGB, GL_UNSIGNED_BYTE, pixels);
 }
 
-void Texture::write(GLuint srcTextureId)
-{
-	void* pixels = new char[width_ * height_ * 3];
-
-	glReadBuffer(GL_COLOR_ATTACHMENT0);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glBindTexture(GL_TEXTURE_2D, srcTextureId);
-	glReadPixels(0, 0, width_, height_, GL_RGB, GL_UNSIGNED_BYTE, pixels);
-
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glBindTexture(GL_TEXTURE_2D, id_);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width_, height_, GL_RGB, GL_UNSIGNED_BYTE, pixels);
-
-	delete[] pixels;
-}
-
 void Texture::clear(const Color& color)
 {
 	glClearTexImage(id_, 0, format_, format_, &color);

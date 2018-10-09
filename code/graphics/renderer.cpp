@@ -51,13 +51,13 @@ Renderer::Renderer(GLsizei dirLightShadowMapSize, GLsizei pointLightShadowMapSiz
 
 			glGenTextures(1, &rttTextureId_);
 			glBindTexture(GL_TEXTURE_2D, rttTextureId_);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1920, 1080, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth_, windowHeight_, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
 			glGenRenderbuffers(1, &rttDepthRenderBufferId_);
 			glBindRenderbuffer(GL_RENDERBUFFER, rttDepthRenderBufferId_);
-			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1920, 1080);
+			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, windowWidth_, windowHeight_);
 			glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,
 				rttDepthRenderBufferId_);
 
@@ -227,6 +227,51 @@ void Renderer::createProjectionMatrices(GLsizei windowWidth, GLsizei windowHeigh
 	perspectiveMatrix_.setPerspective(fovy_, 1.0f / aspectRatio_, zNear_, zFar_);
 
 	orthographicMatrix_.setOrthographic(1.0f, aspectRatio_, -1.0f, 1.0f);
+
+	// Destroy the framebuffer for render to texture and recreate it
+	{
+		if (rttFrameBufferId_ != -1)
+		{
+			glDeleteFramebuffers(1, &rttFrameBufferId_);
+			rttFrameBufferId_ = -1;
+		}
+
+		if (rttTextureId_ != -1)
+		{
+			glDeleteTextures(1, &rttTextureId_);
+			rttTextureId_ = -1;
+		}
+
+		if (rttDepthRenderBufferId_ != -1)
+		{
+			glDeleteRenderbuffers(1, &rttDepthRenderBufferId_);
+			rttDepthRenderBufferId_ = -1;
+		}
+
+		glGenFramebuffers(1, &rttFrameBufferId_);
+		glBindFramebuffer(GL_FRAMEBUFFER, rttFrameBufferId_);
+
+		glGenTextures(1, &rttTextureId_);
+		glBindTexture(GL_TEXTURE_2D, rttTextureId_);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth_, windowHeight_, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+		glGenRenderbuffers(1, &rttDepthRenderBufferId_);
+		glBindRenderbuffer(GL_RENDERBUFFER, rttDepthRenderBufferId_);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, windowWidth_, windowHeight_);
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,
+			rttDepthRenderBufferId_);
+
+		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, rttTextureId_, 0);
+		GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
+		glDrawBuffers(1, drawBuffers);
+
+		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		{
+			throw std::exception("Error during creation of the framebuffer used for rendering to texture");
+		}
+	}
 }
 
 void Renderer::createEnvironmentMap(int sceneIndex, const Vector3f& eye)
@@ -379,7 +424,7 @@ void Renderer::renderSceneToTexture(int sceneIndex, Texture* pTexture)
 	new (&viewFrustum_) Frustum(scene.camera_.position_, scene.camera_.direction_, fovy_, zNear_, zFar_, aspectRatio_);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, rttFrameBufferId_);
-	glViewport(0, 0, 1920, 1080);
+	glViewport(0, 0, windowWidth_, windowHeight_);
 
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -411,7 +456,7 @@ void Renderer::renderSceneToTexture(int sceneIndex, Texture* pTexture)
 		}
 
 		glBindFramebuffer(GL_FRAMEBUFFER, rttFrameBufferId_);
-		glViewport(0, 0, 1920, 1080);
+		glViewport(0, 0, windowWidth_, windowHeight_);
 
 		// Draw shaded models 3d
 		shadedModel3DShader_.execute(
@@ -452,5 +497,29 @@ void Renderer::renderSceneToTexture(int sceneIndex, Texture* pTexture)
 	}
 
 	// Copy pixels from rtt texture to texture
-	pTexture->write(rttTextureId_);
+	{
+		void* pixels = new char[windowWidth_ * windowHeight_ * 3];
+
+		glReadBuffer(GL_COLOR_ATTACHMENT0);
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		glBindTexture(GL_TEXTURE_2D, rttTextureId_);
+		glReadPixels(0, 0, windowWidth_, windowHeight_, GL_RGB, GL_UNSIGNED_BYTE, pixels);
+
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		glBindTexture(GL_TEXTURE_2D, pTexture->id_);
+
+		if (pTexture->width_ == windowWidth_
+			&& pTexture->height_ == windowHeight_)
+		{
+			glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, windowWidth_, windowHeight_, GL_RGB, GL_UNSIGNED_BYTE, pixels);
+		}
+		else
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth_, windowHeight_, 0, GL_RGB, GL_UNSIGNED_BYTE, pixels);
+			pTexture->width_ = windowWidth_;
+			pTexture->height_ = windowHeight_;
+		}
+
+		delete[] pixels;
+	}
 }

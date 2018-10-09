@@ -9,6 +9,8 @@
 
 class Texture
 {
+	friend class Renderer;
+
 public:
 	Texture();
 	Texture(const char* imageFilename, bool useMipmaps);
@@ -17,7 +19,6 @@ public:
 
 	void write(const char* imageFilename, bool useMipmaps);
 	void write(const void* pixels);
-	void write(GLuint srcTextureId);
 	void clear(const Color& color);
 
 	GLuint getId() const;
