@@ -14,7 +14,7 @@ TODO
 ## Developers:
 
 - Damiano Oriti (Programming and 3D Modeling)
-- Sara Battelini (3D Modeling)
+- () (3D Modeling)
 
 ## Description
 
