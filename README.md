@@ -11,10 +11,12 @@
 
 In this videogame, you have to solve some very simple puzzles in order to find the key and escape the castle room you are in.
 
+[Video]()
+
 ### Game Features:
 
 - Freely move in a 3D environment
-- Crouch and jump to reach objects which rest on the floor or on very height places
+- Crouch and jump to reach objects which rest on the floor or on height places
 - Interact with objects using the physics
 - Rotate and move objects to examine them closely and from every angle
 - Combine objects to use them (e.g. put the key in the keyhole so you may open the door)
@@ -24,12 +26,15 @@ In this videogame, you have to solve some very simple puzzles in order to find t
 ### Graphics Features:
 
 - Phong shading
+- Support for normal, diffuse and specular maps
 - Environment map reflections
 - Real-time shadows with shadow map technique (2D map for directional light and cube map for point light)
 - Cascaded shadow maps technique (for directional light)
 - Soft shadows
 - Font rendering based on [signed distance field](http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf)
-- Render to texture
+- Text effects such as drop shadows and glow
+- Billboard rendering with transparency
+- Render to texture technique
 
 ### Other Features:
 
@@ -37,8 +42,8 @@ In this videogame, you have to solve some very simple puzzles in order to find t
 - Configurator class with related config.ini file
 - Batch Allocator class for fast allocation
 - Asset Manager to manage assets and avoid duplication of assets in memory (e.g. textures)
-
-[Video]()
+- Integrated FPS (Frame Per Second) counter
+- Singleton classes for easy access to Renderer, Audio System, Physics Engine, Configurator, and Asset Manager
 
 ## Tools
 
