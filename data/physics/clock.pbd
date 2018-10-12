@@ -1,0 +1,39 @@
+shape CompoundShape
+
+child_shape BoxShape
+half_extents 0.20 0.06 0.15
+local_rotation 0.0 0.0 0.0 1.0
+local_position 0.00 0.06 0.01
+
+child_shape BoxShape
+half_extents 0.23 0.01 0.18
+local_rotation 0.0 0.0 0.0 1.0
+local_position -0.00 0.09 0.03
+
+child_shape BoxShape
+half_extents 0.23 0.08 0.01
+local_rotation 0.0 0.0 0.0 1.0
+local_position 0.00 0.98 0.19
+
+child_shape BoxShape
+half_extents 0.20 0.33 0.15
+local_rotation 0.0 0.0 0.0 1.0
+local_position 0.00 0.57 0.01
+
+child_shape BoxShape
+half_extents 0.11 0.06 0.15
+local_rotation 0.0 0.0 0.0 1.0
+local_position 0.09 0.18 0.01
+
+child_shape BoxShape
+half_extents 0.20 0.06 0.01
+local_rotation 0.0 0.0 0.0 1.0
+local_position -0.00 0.18 0.14
+
+child_shape BoxShape
+half_extents 0.20 0.06 0.01
+local_rotation 0.0 0.0 0.0 1.0
+local_position -0.00 0.18 -0.14
+
+mass 0
+

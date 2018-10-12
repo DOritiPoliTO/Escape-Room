@@ -1,0 +1,4 @@
+shape BoxShape
+half_extents 0.4 0.26 0.015
+
+mass 1.0

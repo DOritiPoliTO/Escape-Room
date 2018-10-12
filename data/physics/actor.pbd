@@ -1,0 +1,13 @@
+shape CompoundShape
+
+child_shape CylinderShape
+half_extents 0.25 0.8 0.25
+local_rotation 0.0 0.0 0.0 1.0
+local_position 0.0 1.05 0.0
+
+child_shape SphereShape
+radius 0.25
+local_rotation 0.0 0.0 0.0 1.0
+local_position 0.0 0.25 0.0
+
+mass 65.0

@@ -1,0 +1,9 @@
+shape CompoundShape
+
+child_shape BoxShape
+half_extents 0.94 0.02 0.02
+local_rotation 0.0 0.0 0.0 1.0
+local_position 0.00 1.10 0.00
+
+mass 0
+
