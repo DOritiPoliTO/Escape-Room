@@ -31,7 +31,7 @@ In this videogame, you have to solve some very simple puzzles in order to find t
 - Environment map reflections
 - Real-time shadows with shadow map technique (2D map for directional light and cube map for point light)
 - Cascaded shadow maps technique (for directional light)
-- Soft shadows
+- Filtered shadows for soft edges
 - Font rendering based on [signed distance field](http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf)
 - Text effects such as drop shadows and glow
 - Billboard rendering with transparency
