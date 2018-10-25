@@ -33,5 +33,6 @@ private:
 	btDiscreteDynamicsWorld* pDynamicsWorld_;
 
 	PhysicsEngine();
+	PhysicsEngine(const PhysicsEngine&) = delete;
 	~PhysicsEngine();
 };

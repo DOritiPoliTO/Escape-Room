@@ -13,7 +13,7 @@ public:
 
 private:
 	InputManager() {}
-	InputManager(const InputManager&) {}
+	InputManager(const InputManager&) = delete;
 };
 
 InputManager& InputManager::getInstance()

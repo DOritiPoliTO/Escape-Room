@@ -18,6 +18,6 @@ private:
 	FMOD_SYSTEM* pFmodSystem_;
 
 	AudioSystem(int nChannels);
-	AudioSystem(const AudioSystem& other);
+	AudioSystem(const AudioSystem&) = delete;
 	~AudioSystem();
 };

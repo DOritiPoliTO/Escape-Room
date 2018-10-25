@@ -20,8 +20,8 @@ public:
 private:
 	struct AssetInfo;
 
-	AssetManager() {}
-	AssetManager(const AssetManager& other);
+	AssetManager() {};
+	AssetManager(const AssetManager&) = delete;
 
 	std::map<std::type_index, std::map<const std::string, AssetInfo>> assetMapMap_;
 };

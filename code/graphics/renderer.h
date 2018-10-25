@@ -50,6 +50,6 @@ private:
 
 	Renderer(GLsizei dirLightShadowMapSize, GLsizei pointLightShadowMapSize, GLsizei environmentMapSize,
 		GLfloat fovy, GLfloat zNear, GLfloat zFar);
-	Renderer(const Renderer& other);
+	Renderer(const Renderer&) = delete;
 	~Renderer();
 };

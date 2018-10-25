@@ -55,7 +55,7 @@ private:
 	int hours_;
 
 	Game();
-	Game(const Game& other);
+	Game(const Game&) = delete;
 	~Game();
 
 	inline void advanceVideo(float deltaTime);

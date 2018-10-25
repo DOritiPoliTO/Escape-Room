@@ -13,7 +13,7 @@ public:
 
 private:
 	Configurator();
-	Configurator(const Configurator& other);
+	Configurator(const Configurator&) = delete;
 
 	std::map<std::string, std::string> parameterMap_;
 };
