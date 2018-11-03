@@ -17,7 +17,7 @@ public:
 	void setDirection(const GLfloat* direction);
 };
 
-DirectionalLight::DirectionalLight(const GLfloat* ambient, const GLfloat* diffuse, const GLfloat* specular,
+inline DirectionalLight::DirectionalLight(const GLfloat* ambient, const GLfloat* diffuse, const GLfloat* specular,
 	const GLfloat* direction)
 {
 	for (int i = 0; i < 3; i++)
@@ -29,7 +29,7 @@ DirectionalLight::DirectionalLight(const GLfloat* ambient, const GLfloat* diffus
 	}
 }
 
-void DirectionalLight::setDirection(const GLfloat* direction)
+inline void DirectionalLight::setDirection(const GLfloat* direction)
 {
 	for (size_t i = 0; i < 3; i++)
 	{
