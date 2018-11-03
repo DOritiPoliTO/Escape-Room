@@ -1,6 +1,6 @@
 # Escape Room
 
-**Escape Room is a videogame developed for a university Computer Graphics course**
+**Escape Room is a videogame developed in OpenGL**
 
 ### Developers:
 
@@ -9,7 +9,7 @@
 
 ## Description
 
-In this videogame, you have to solve some very simple puzzles in order to find the key and escape the castle room you are in.
+In this videogame, developed for the Computer Graphics course at Politecnico of Torino, you have to solve some very simple puzzles in order to find the key and escape the room you are in.
 
 [Video](https://www.youtube.com/watch?v=IKH6xkf1tJQ)
 
@@ -36,6 +36,10 @@ In this videogame, you have to solve some very simple puzzles in order to find t
 - Text effects such as drop shadows and glow
 - Billboard rendering with transparency
 - Render to texture technique
+
+**Note**
+
+Some media files (specifically textures, models and videos) necessary to build this project are not present in this repository and are not available anywhere else. However, if you want to use only the renderer, you can find it, and all you need to build it (except for the external libraries), in this [repository](https://github.com/DamianoOriti/OpenGL-Renderer).
 
 ### Other Features:
 
