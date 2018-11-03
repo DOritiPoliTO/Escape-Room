@@ -72,3 +72,10 @@ To install the above libraries, you could use [Vcpkg](https://github.com/Microso
 ### Audio
 
 You also need [fmod](https://en.wikipedia.org/wiki/FMOD) for audio file formats loading and sound reproduction. To install fmod, you need to register on http://www.fmod.com.
+
+
+### [License](https://github.com/DamianoOriti/Escape-Room/blob/master/LICENSE.txt)
+
+**Important note**
+
+Since this software uses fmod, which is a commercial product, you should check its [license](https://fmod.com/licensing) and [EULA](https://fmod.com/resources/eula) too.
