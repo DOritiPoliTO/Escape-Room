@@ -38,6 +38,7 @@ In this videogame, developed for the Computer Graphics course at Politecnico of 
 - Render to texture technique
 
 **Note**
+
 Some media files (specifically textures, models and videos) necessary to build this project are not present in this repository and are not available anywhere else. However, if you want to use only the renderer, you can find it, and all you need to build it (except for the external libraries), in this [repository](https://github.com/DamianoOriti/OpenGL-Renderer).
 
 ### Other Features:
@@ -80,4 +81,5 @@ You also need [fmod](https://en.wikipedia.org/wiki/FMOD) for audio file formats 
 ### [License](https://github.com/DamianoOriti/Escape-Room/blob/master/LICENSE.txt)
 
 **Important note**
+
 Since this software uses fmod, which is a commercial product, you should check its [license](https://fmod.com/licensing) and [EULA](https://fmod.com/resources/eula) too.
