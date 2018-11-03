@@ -12,22 +12,27 @@ public:
 	GLfloat direction_[3];
 
 	DirectionalLight(const GLfloat* ambient, const GLfloat* diffuse, const GLfloat* specular,
-		const GLfloat* position)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			ambient_[i] = ambient[i];
-			diffuse_[i] = diffuse[i];
-			specular_[i] = specular[i];
-			direction_[i] = position[i];
-		}
-	}
+		const GLfloat* direction);
 
-	void setPosition(const GLfloat* position)
-	{
-		for (size_t i = 0; i < 3; i++)
-		{
-			direction_[i] = position[i];
-		}
-	}
+	void setDirection(const GLfloat* direction);
 };
+
+DirectionalLight::DirectionalLight(const GLfloat* ambient, const GLfloat* diffuse, const GLfloat* specular,
+	const GLfloat* direction)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		ambient_[i] = ambient[i];
+		diffuse_[i] = diffuse[i];
+		specular_[i] = specular[i];
+		direction_[i] = direction[i];
+	}
+}
+
+void DirectionalLight::setDirection(const GLfloat* direction)
+{
+	for (size_t i = 0; i < 3; i++)
+	{
+		direction_[i] = direction[i];
+	}
+}
